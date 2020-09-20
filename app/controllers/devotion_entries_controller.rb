@@ -18,6 +18,15 @@ class DevotionEntriesController < ApplicationController
         end
     end
 
+    get '/devotion_entries/:id' do
+        @devotion_entry = DevotionEntry.find(params[:id])
+        erb :'/devotion_entries/show'
+    end
 
+    #to edit devotion entries
+    get '/devotion_entries/10/edit' do
+        erb :'devotion_entries/edit'
+    end
+    
     
 end
