@@ -16,9 +16,11 @@ class DevotionEntriesController < ApplicationController
             redirect '/'
         end
         if params[:content] != ""
+            flash[:message] = "Devotion entry created!"
             @devotion_entry = DevotionEntry.create(content: params[:content], user_id: current_user.id)
             redirect "/devotion_entries/#{@devotion_entry.id}"
         else
+            flash[:message] = "Devotion entry was not created."
             redirect '/devotion_entries/new'
         end
     end

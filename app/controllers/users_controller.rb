@@ -8,11 +8,12 @@ class UsersController < ApplicationController
     #login form
     post '/login' do
         @user = User.find_by(email: params[:email])
-        if @user.authenticate(params[:password])
+        if @user && @user.authenticate(params[:password])
             session[:user_id] = @user.id
             puts session
             redirect "users/#{@user.id}"
         else
+            flash[:message] = "Invalid credentials. Please Sign Up or try again"
             redirect '/login'
         end
     end
