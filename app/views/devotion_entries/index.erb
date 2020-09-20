@@ -1,1 +1,6 @@
-INDEX PAGE FOR DEVOTION ENTRIES
+All DEVOTION ENTRIES
+<% @devotion_entries.each do |devotion_entry| %>
+    <h4><a href="/devotion_entries/<%= devotion_entry.id %>"><%= devotion_entry.created_at %></a></h4>
+    <p><%= devotion_entry.content %></p>
+    <br><br>
+<% end %>

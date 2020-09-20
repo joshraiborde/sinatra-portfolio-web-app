@@ -1,5 +1,11 @@
 class DevotionEntriesController < ApplicationController
 
+    get '/devotion_entries' do
+        @devotion_entries = DevotionEntry.all
+        erb :'devotion_entries/index'
+      end
+
+
     get '/devotion_entries/new' do
         erb :'/devotion_entries/new'
     end
@@ -26,7 +32,7 @@ class DevotionEntriesController < ApplicationController
     get '/devotion_entries/:id/edit' do
         set_devotion_entry
         if logged_in?
-            if @devotion_entry.user == current_user 
+            if authorized_to_edit?(@devotion_entry)
                 erb :'/devotion_entries/edit'
             else
                 redirect "user/#{current_user.id}"
