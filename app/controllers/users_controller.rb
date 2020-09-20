@@ -31,7 +31,7 @@ class UsersController < ApplicationController
             flash[:message] = "Congrats! #{user.name}, you have created a Devotions Account!"
             redirect "/users/#{@user.id}"
         else
-            flash[:errors] = "Uh-Oh. Account creation was a failure... #{user.errors.full_messages.to_sentence}"
+            flash[:errors] = "Uh-Oh. Account creation was a failure... #{@user.errors.full_messages.to_sentence}"
             redirect '/signup'	
         end
     end
@@ -39,6 +39,7 @@ class UsersController < ApplicationController
     #show route
     get '/users/:id' do
         @user = User.find_by(id: params[:id])
+        redirect_if_not_logged_in
 
         erb :'/users/show'
     end

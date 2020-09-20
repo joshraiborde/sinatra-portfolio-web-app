@@ -32,6 +32,13 @@ class ApplicationController < Sinatra::Base
       devotion_entry.user == current_user
     end
 
+    def redirect_if_not_logged_in
+      if !logged_in?
+        flash[:errors] = "You have to be logged in to be able to view that page."
+        redirect '/'
+      end
+    end
+
 
   end
 
