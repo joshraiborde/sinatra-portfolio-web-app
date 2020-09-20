@@ -46,7 +46,7 @@ class DevotionEntriesController < ApplicationController
     patch '/devotion_entries/:id' do
         set_devotion_entry
         if logged_in?
-            if @devotion_entry.user == current_user
+            if @devotion_entry.user == current_user && params[:content] != ""
                 @devotion_entry.update(content: params[:content])
                 redirect "/devotion_entries/#{@devotion_entry.id}"
             else
@@ -55,6 +55,16 @@ class DevotionEntriesController < ApplicationController
         else
             redirect '/'
         end        
+    end
+
+    delete '/devotion_entries/:id' do
+        set_devotion_entry 
+        if authorized_to_edit?(@devotion_entry)
+            @devotion_entry.destroy
+            redirect '/devotion_entries'
+        else
+            redirect '/devotion_entries'
+        end
     end
     
     private

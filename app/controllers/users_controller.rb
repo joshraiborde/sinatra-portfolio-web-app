@@ -12,7 +12,6 @@ class UsersController < ApplicationController
             session[:user_id] = @user.id
             puts session
             redirect "users/#{@user.id}"
-
         else
             redirect '/login'
         end
@@ -21,7 +20,6 @@ class UsersController < ApplicationController
     #signup form
     get '/signup' do
         erb :signup 
-        
     end
 
     post '/users' do
@@ -29,7 +27,6 @@ class UsersController < ApplicationController
             @user = User.create(params)
             session[:user_id] = @user.id
             redirect "/users/#{@user.id}"
-        
             else
             redirect '/signup'	
         end        
@@ -46,9 +43,6 @@ class UsersController < ApplicationController
         session.clear
         redirect '/'
     end
-
-
-
 
 
 end
