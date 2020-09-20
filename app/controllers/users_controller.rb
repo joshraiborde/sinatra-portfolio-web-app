@@ -11,9 +11,10 @@ class UsersController < ApplicationController
         if @user && @user.authenticate(params[:password])
             session[:user_id] = @user.id
             puts session
+            flash[:message] = "Welcome, #{@user.name}!"
             redirect "users/#{@user.id}"
         else
-            flash[:message] = "Invalid credentials. Please Sign Up or try again"
+            flash[:errors] = "Invalid credentials. Please Sign Up or try again"
             redirect '/login'
         end
     end
@@ -24,13 +25,15 @@ class UsersController < ApplicationController
     end
 
     post '/users' do
-        if params[:name] != "" && params[:email] != "" && params[:password] != ""
-            @user = User.create(params)
+        @user = User.new(params)
+        if @user.save
             session[:user_id] = @user.id
+            flash[:message] = "Congrats! #{user.name}, you have created a Devotions Account!"
             redirect "/users/#{@user.id}"
-            else
+        else
+            flash[:errors] = "Uh-Oh. Account creation was a failure... #{user.errors.full_messages.to_sentence}"
             redirect '/signup'	
-        end        
+        end
     end
 
     #show route
