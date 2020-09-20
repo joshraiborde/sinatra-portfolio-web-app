@@ -1,1 +1,8 @@
-EDIT FORM
+EDIT page for devotion entry
+
+<form class="" action="/devotion_entries" method="post">
+    <input type="hidden" name="_method" value="patch">
+    <label for="content">Content</label>
+    <textarea name="content" style="width:auto; height:auto;"><%= @devotion_entry.content %></textarea>
+    <input type="submit" name="" value="Edit Entry">
+</form>
