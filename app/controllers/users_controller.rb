@@ -28,7 +28,7 @@ class UsersController < ApplicationController
         @user = User.new(params)
         if @user.save
             session[:user_id] = @user.id
-            flash[:message] = "Congrats! #{user.name}, you have created a Devotions Account!"
+            flash[:message] = "Congrats! #{@user.name}, you have created a Devotions Account!"
             redirect "/users/#{@user.id}"
         else
             flash[:errors] = "Uh-Oh. Account creation was a failure... #{@user.errors.full_messages.to_sentence}"
