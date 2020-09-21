@@ -1,6 +1,6 @@
 EDIT page for devotion entry
 
-<form class="" action="/devotion_entries" method="post">
+<form class="" action="/devotion_entries/<%= @devotion_entry.id %>" method="post">
     <input type="hidden" name="_method" value="patch">
     <label for="content">Content</label>
     <textarea name="content" style="width:auto; height:auto;"><%= @devotion_entry.content %></textarea>
