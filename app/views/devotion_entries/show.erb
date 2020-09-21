@@ -2,6 +2,8 @@ SHOW PAGE FOR A DEVOTION ENTRY
 
 <p><%= @devotion_entry.content%></p>
 
+<p>Created by: <%= @devotion_entry.user.name %></p>
+
 
  <% if authorized_to_edit?(@devotion_entry)%>
     <a href="/devotion_entries/<%= @devotion_entry.id %>/edit">Edit Entry</a>
