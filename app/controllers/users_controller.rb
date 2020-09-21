@@ -14,7 +14,7 @@ class UsersController < ApplicationController
             flash[:message] = "Welcome, #{@user.name}!"
             redirect "users/#{@user.id}"
         else
-            flash[:errors] = "Invalid credentials. Please Sign Up or try again"
+            flash[:errors] = "Uh-oh. Either the Email or Password is incorrect. Please try again or Sign Up."
             redirect '/login'
         end
     end
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
             flash[:message] = "Congrats! #{@user.name}, you have created a Devotions Account!"
             redirect "/users/#{@user.id}"
         else
-            flash[:errors] = "Uh-Oh. Account creation was a failure... #{@user.errors.full_messages.to_sentence}"
+            flash[:errors] = "Uh-Oh. We weren't able to make an account because #{@user.errors.full_messages.to_sentence}"
             redirect '/signup'	
         end
     end

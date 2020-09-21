@@ -1,7 +1,8 @@
-All DEVOTION ENTRIES
+Click on an inspirational devotional to be inspired!
+<br><br>
 <% @devotion_entries.each do |devotion_entry| %>
-    <h4><a href="/devotion_entries/<%= devotion_entry.id %>"><%= devotion_entry.created_at %></a></h4>
-    <p><%= devotion_entry.content %></p>
-      <p>By <%= devotion_entry.user.name %></p>
+<h4><a href="/devotion_entries/<%= devotion_entry.id %>"><%= devotion_entry.created_at %></a></h4>
+<p><%= devotion_entry.content %>
+<br>By <%= devotion_entry.user.name %></p>
     <br><br>
 <% end %>
