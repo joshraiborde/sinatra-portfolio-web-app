@@ -3,6 +3,6 @@ Click on an inspirational devotional to be inspired!
 <% @devotion_entries.each do |devotion_entry| %>
 <h4><a href="/devotion_entries/<%= devotion_entry.id %>"><%= devotion_entry.created_at %></a></h4>
 <p><%= devotion_entry.content %>
-<br>By <%= devotion_entry.user.name %></p>
+<br>By <%= devotion_entry.user.name.capitalize %></p>
     <br><br>
 <% end %>

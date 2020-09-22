@@ -1,8 +1,8 @@
-<p><%= @devotion_entry.user.name %>'s Devotion</p>
+<p><%= @devotion_entry.user.name.capitalize %>'s Devotion</p>
 <br><br>
 <p><%= @devotion_entry.content%></p>
 
-<p>Created by: <%= @devotion_entry.user.name %></p>
+<p>Created by: <%= @devotion_entry.user.name.capitalize %></p>
 
 
  <% if authorized_to_edit?(@devotion_entry)%>
@@ -14,3 +14,5 @@
     <input type="submit" name="" value="Delete this Entry">
     </form>
 <% end %>
+<br>
+<a href="/devotion_entries">Previous Page</a>
