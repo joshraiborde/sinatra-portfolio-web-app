@@ -11,7 +11,7 @@ class UsersController < ApplicationController
         if @user && @user.authenticate(params[:password])
             session[:user_id] = @user.id
             puts session
-            flash[:message] = "Welcome, #{@user.name.capitalize}! You are signed in!"
+            flash[:message] = "Welcome, #{@user.name.capitalize}!"
             redirect "users/#{@user.id}"
         else
             flash[:errors] = "Uh-oh. Either the Email or Password is incorrect. Please try again or Sign Up."

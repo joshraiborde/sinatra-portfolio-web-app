@@ -54,7 +54,7 @@ class DevotionEntriesController < ApplicationController
         set_devotion_entry 
         if authorized_to_edit?(@devotion_entry)
             @devotion_entry.destroy
-            flash[:message] = "That Devotion has been deleted"
+            flash[:errors] = "That Devotion has been deleted"
             redirect '/devotion_entries'
         else
             redirect '/devotion_entries'
