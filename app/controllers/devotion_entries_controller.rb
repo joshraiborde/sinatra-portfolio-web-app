@@ -5,13 +5,17 @@ class DevotionEntriesController < ApplicationController
         erb :'devotion_entries/index'
       end
 
-
+    # to render a form to create new entry
     get '/devotion_entries/new' do
         erb :'/devotion_entries/new'
     end
-
+    
+    # to create a new  entry
     post '/devotion_entries' do
         redirect_if_not_logged_in
+    # to create a new entry and save it to the db
+    # to create a entry only if a user is logged in
+    # to save the entry only if it has some content
         if params[:content] != ""
             flash[:message] = "Devotion entry created!"
             @devotion_entry = DevotionEntry.create(content: params[:content], user_id: current_user.id)
@@ -21,13 +25,14 @@ class DevotionEntriesController < ApplicationController
             redirect '/devotion_entries/new'
         end
     end
-
+    
+    # show route for an entry 
     get '/devotion_entries/:id' do
         set_devotion_entry
         erb :'/devotion_entries/show'
     end
 
-    #to edit devotion entries
+    # taken to a show from to edit devotion entries
     get '/devotion_entries/:id/edit' do
         set_devotion_entry
         redirect_if_not_logged_in
@@ -38,7 +43,7 @@ class DevotionEntriesController < ApplicationController
         end
     end
 
-    #patch
+    #patch find entry, update and redirect to show page
     patch '/devotion_entries/:id' do
         set_devotion_entry
         redirect_if_not_logged_in
@@ -50,6 +55,7 @@ class DevotionEntriesController < ApplicationController
         end
     end
 
+    # to delete authorized user entries
     delete '/devotion_entries/:id' do
         set_devotion_entry 
         if authorized_to_edit?(@devotion_entry)
@@ -61,6 +67,7 @@ class DevotionEntriesController < ApplicationController
         end
     end
     
+    # index route for all entries
     private
 
     def set_devotion_entry
