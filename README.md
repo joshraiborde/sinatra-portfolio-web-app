@@ -1,4 +1,17 @@
-This is an app for Daily Devotions that can allow users to log in, sign up, and create devotional entries. Users should be able to edit and delete thier own devotional entries.
+This is an app for Daily Devotions that can allow users to sign up, log in and create devotional entries.
+Users should be able to edit and delete thier own devotional entries while aslo be able to only view other users devotional entries.
+
+
+To try it out, clone this repo.
+
+in the terminal, type in:
+bundle install
+
+in the terminal, type in:
+shotgun
+
+open up a browser and navigate to:
+localhost:9393
 
 LICENSE
 
