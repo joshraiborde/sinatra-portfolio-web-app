@@ -4,6 +4,7 @@
 
 <p>Created by: <%= @devotion_entry.user.name.capitalize %></p>
 
+<p>Created on: <%= @devotion_entry.formatted_created_at %></p>
 
  <% if authorized_to_edit?(@devotion_entry)%>
     <a href="/devotion_entries/<%= @devotion_entry.id %>/edit">Edit Devotion</a>

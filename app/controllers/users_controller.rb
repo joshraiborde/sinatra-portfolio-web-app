@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
 
-    #login page
+    #login page, render the login  page - form
     get '/login' do
         erb :login
     end
 
-    #login form
+    #to receive the login form, find user and log the user in (to create a session)
     post '/login' do
         @user = User.find_by(email: params[:email])
         if @user && @user.authenticate(params[:password])
@@ -19,11 +19,12 @@ class UsersController < ApplicationController
         end
     end
 
-    #signup form
+    #render signup form
     get '/signup' do
         erb :signup 
     end
 
+    #create a new user and persist the user to the DB
     post '/users' do
         @user = User.new(params)
         if @user.save
