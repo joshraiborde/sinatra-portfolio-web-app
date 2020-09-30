@@ -10,6 +10,17 @@ class DevotionEntriesController < ApplicationController
         erb :'/devotion_entries/new'
     end
     
+    get '/devotion_entries/today' do
+        @devotion_entries = DevotionEntry.where('created_at BETWEEN ? AND ?', DateTime.now.beginning_of_day, DateTime.now.end_of_day).all
+        erb :'/devotion_entries/index'
+    end
+
+    get '/devotion_entries/sorted' do
+        @devotion_entries = DevotionEntry.all.order(:created_at)
+        erb :'/devotion_entries/index'
+    end
+    
+
     # to create a new  entry
     post '/devotion_entries' do
         redirect_if_not_logged_in
@@ -39,7 +50,7 @@ class DevotionEntriesController < ApplicationController
         if authorized_to_edit?(@devotion_entry)
             erb :'/devotion_entries/edit'
         else
-            redirect "user/#{current_user.id}"
+            redirect "users/#{current_user.id}"
         end
     end
 

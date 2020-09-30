@@ -10,7 +10,6 @@ class UsersController < ApplicationController
         @user = User.find_by(email: params[:email])
         if @user && @user.authenticate(params[:password])
             session[:user_id] = @user.id
-            puts session
             flash[:message] = "Welcome, #{@user.name.capitalize}!"
             redirect "users/#{@user.id}"
         else
